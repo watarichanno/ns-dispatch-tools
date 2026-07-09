@@ -25,10 +25,10 @@ jobs:
 
       # This enables task distribution via Nx Cloud
       # Learn more at https://nx.dev/docs/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      - run: pnpm nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e"
+      - run: pnpm nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build,e2e,lint,test,typecheck"
 
       - run: pnpm ci
 
       # Prepend any command with "nx record --" to record its logs to Nx Cloud
       - run: pnpm nx record -- pnpm nx format:check --base="remotes/origin/main"
-      - run: pnpm nx run-many -t build e2e lint test typecheck
+      - run: pnpm nx affected -t build e2e lint test typecheck

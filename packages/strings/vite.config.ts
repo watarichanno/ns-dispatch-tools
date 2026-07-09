@@ -9,7 +9,7 @@ export default defineConfig(() => ({
   //  plugins: [ nxViteTsPaths() ],
   // },
   test: {
-    name: '@org/strings',
+    name: '@the-south-pacific/strings',
     watch: false,
     globals: true,
     environment: 'node',

@@ -3,21 +3,23 @@
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 ✨ A repository showcasing key [Nx](https://nx.dev) features for TypeScript monorepos ✨
+
 ## Finish your Nx platform setup
 
 🚀 [Finish setting up your workspace](https://cloud.nx.app/connect/V1YRc2pYZ1) to get faster builds with remote caching, distributed task execution, and self-healing CI. [Learn more about Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud).
+
 ## 📦 Project Overview
 
 This repository demonstrates a production-ready TypeScript monorepo with:
 
 - **3 Publishable Packages** - Ready for NPM publishing
 
-  - `@org/strings` - String manipulation utilities
-  - `@org/async` - Async utility functions with retry logic
-  - `@org/colors` - Color conversion and manipulation utilities
+  - `@the-south-pacific/strings` - String manipulation utilities
+  - `@the-south-pacific/async` - Async utility functions with retry logic
+  - `@the-south-pacific/colors` - Color conversion and manipulation utilities
 
 - **1 Internal Library**
-  - `@org/utils` - Shared utilities (private, not published)
+  - `@the-south-pacific/utils` - Shared utilities (private, not published)
 
 ## 🚀 Quick Start
 
@@ -65,7 +67,7 @@ Enforces architectural constraints using tags. Each package has specific depende
 npx nx graph
 
 # View a specific project's details
-npx nx show project @org/strings --web
+npx nx show project @the-south-pacific/strings --web
 ```
 
 [Learn more about module boundaries →](https://nx.dev/docs/features/enforce-module-boundaries)
@@ -76,10 +78,10 @@ Packages can define custom commands beyond standard build/test/lint:
 
 ```bash
 # Run the custom build-base command for strings package
-npx nx run @org/strings:build-base
+npx nx run @the-south-pacific/strings:build-base
 
 # See all available targets for a project
-npx nx show project @org/strings
+npx nx show project @the-south-pacific/strings
 ```
 
 ### 3. 🔧 Self-Healing CI
@@ -88,7 +90,7 @@ The CI pipeline includes `nx fix-ci` which automatically identifies and suggests
 
 ```bash
 # Run tests and see the failure
-npx nx run @org/async:test
+npx nx run @the-south-pacific/async:test
 
 # In CI, this command provides automated fixes
 npx nx fix-ci
@@ -108,7 +110,7 @@ npx nx release --dry-run
 npx nx release
 
 # Publish only specific packages
-npx nx release publish --projects=@org/strings,@org/colors
+npx nx release publish --projects=@the-south-pacific/strings,@the-south-pacific/colors
 ```
 
 [Learn more about Nx Release →](https://nx.dev/docs/features/manage-releases)
@@ -130,12 +132,12 @@ npx nx release publish --projects=@org/strings,@org/colors
 
 This repository uses tags to enforce module boundaries:
 
-| Package        | Tag             | Can Import From        |
-| -------------- | --------------- | ---------------------- |
-| `@org/utils`   | `scope:shared`  | Nothing (base library) |
-| `@org/strings` | `scope:strings` | `scope:shared`         |
-| `@org/async`   | `scope:async`   | `scope:shared`         |
-| `@org/colors`  | `scope:colors`  | `scope:shared`         |
+| Package                      | Tag             | Can Import From        |
+| ---------------------------- | --------------- | ---------------------- |
+| `@the-south-pacific/utils`   | `scope:shared`  | Nothing (base library) |
+| `@the-south-pacific/strings` | `scope:strings` | `scope:shared`         |
+| `@the-south-pacific/async`   | `scope:async`   | `scope:shared`         |
+| `@the-south-pacific/colors`  | `scope:colors`  | `scope:shared`         |
 
 The ESLint configuration enforces these boundaries, preventing circular dependencies and maintaining clean architecture.
 
@@ -143,8 +145,8 @@ The ESLint configuration enforces these boundaries, preventing circular dependen
 
 To see module boundary enforcement in action:
 
-1. Try importing `@org/colors` into `@org/strings`
-2. Run `npx nx run @org/strings:lint`
+1. Try importing `@the-south-pacific/colors` into `@the-south-pacific/strings`
+2. Run `npx nx run @the-south-pacific/strings:lint`
 3. You'll see an error about violating module boundaries
 
 ## 📚 Useful Commands
@@ -153,12 +155,12 @@ To see module boundary enforcement in action:
 # Project exploration
 npx nx graph                                    # Interactive dependency graph
 npx nx list                                     # List installed plugins
-npx nx show project @org/strings --web              # View project details
+npx nx show project @the-south-pacific/strings --web              # View project details
 
 # Development
-npx nx run @org/strings:build                           # Build a specific package
-npx nx run @org/async:test                              # Test a specific package
-npx nx run @org/colors:lint                             # Lint a specific package
+npx nx run @the-south-pacific/strings:build                           # Build a specific package
+npx nx run @the-south-pacific/async:test                              # Test a specific package
+npx nx run @the-south-pacific/colors:lint                             # Lint a specific package
 
 # Running multiple tasks
 npx nx run-many -t build                       # Build all projects

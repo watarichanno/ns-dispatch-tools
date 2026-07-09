@@ -1,4 +1,4 @@
-import { validateType } from '@org/utils';
+import { validateType } from '@the-south-pacific/utils';
 
 /**
  * Capitalize first letter of each word

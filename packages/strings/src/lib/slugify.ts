@@ -1,4 +1,4 @@
-import { validateType } from '@org/utils';
+import { validateType } from '@the-south-pacific/utils';
 
 /**
  * Convert text to URL-friendly slug

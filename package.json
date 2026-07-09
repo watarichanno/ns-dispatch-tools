@@ -2,7 +2,12 @@
   "name": "@the-south-pacific/ns-dispatch-tools",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "nx run-many -t build",
+    "format:check": "nx format:check --all",
+    "format:write": "nx format:write --all",
+    "test": "nx run-many -t test"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",

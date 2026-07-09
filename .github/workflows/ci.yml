@@ -31,4 +31,4 @@ jobs:
 
       # Prepend any command with "nx record --" to record its logs to Nx Cloud
       - run: pnpm nx record -- pnpm nx format:check --base="remotes/origin/main"
-      - run: pnpm nx record -- pnpm nx run-many --no-tui -t lint typecheck build test e2e
+      - run: pnpm nx run-many -t build e2e lint test typecheck

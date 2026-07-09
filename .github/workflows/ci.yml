@@ -30,4 +30,4 @@ jobs:
       - run: pnpm ci
 
       - run: pnpm nx record -- pnpm nx format:check --base="remotes/origin/main"
-      - run: pnpm nx affected -t build e2e lint test typecheck
+      - run: pnpm nx affected --base="remotes/origin/main" -t build e2e lint test typecheck

@@ -2,13 +2,14 @@
   "name": "@the-south-pacific/ns-dispatch-tools",
   "version": "0.0.0",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "nx run-many -t build",
-    "format:check": "nx format:check --all",
-    "format:write": "nx format:write --all",
+    "check": "pnpm check:format && nx run-many -t lint typecheck build test e2e",
+    "format:check": "nx format:check",
+    "format:fix": "nx format:write",
     "test": "nx run-many -t test"
   },
-  "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@nx/eslint": "23.0.1",
@@ -48,5 +49,16 @@
       }
     }
   },
-  "dependencies": {}
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.18.0",
+      "onFail": "download"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.10.0",
+      "onFail": "download"
+    }
+  }
 }

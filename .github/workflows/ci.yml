@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  main:
+  ci:
     runs-on: ubuntu-latest
     environment: ${{ (github.ref == 'refs/heads/main' && 'protected') || null }}
     env:

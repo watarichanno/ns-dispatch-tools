@@ -11,24 +11,31 @@ permissions:
   contents: read
 
 jobs:
-  main:
+  ci:
     runs-on: ubuntu-latest
+    environment: ${{ (github.ref == 'refs/heads/main' && 'protected') || null }}
+    env:
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout repository
+        uses: actions/checkout@v7
         with:
           filter: tree:0
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v6
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
         with:
           cache: true
 
-      # This enables task distribution via Nx Cloud
-      # Learn more at https://nx.dev/docs/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      - run: pnpm nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e"
+      - name: Get appropriate base and head commit SHAs for `nx affected` commands
+        uses: nrwl/nx-set-shas@v5
 
-      - run: pnpm ci
+      - name: Install dependencies
+        run: pnpm ci
 
-      # Prepend any command with "nx record --" to record its logs to Nx Cloud
-      - run: pnpm nx record -- pnpm nx format:check --base="remotes/origin/main"
-      - run: pnpm check
+      - name: Check code formatting
+        run: pnpm nx record -- pnpm nx format:check --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: Build, test, lint
+        run: pnpm nx affected -t build e2e lint test typecheck --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

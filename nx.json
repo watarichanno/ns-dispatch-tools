@@ -14,9 +14,7 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
+        "typecheck": { "targetName": "typecheck" },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -38,33 +36,15 @@
         "watchDepsTargetName": "watch-deps"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/vitest",
-      "options": {
-        "testTargetName": "test"
-      }
-    }
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    { "plugin": "@nx/vitest", "options": { "testTargetName": "test" } }
   ],
   "release": {
     "projects": ["!utils", "!@the-south-pacific/source"],
-    "version": {
-      "preVersionCommand": "npx nx run-many -t build"
-    }
+    "version": { "preVersionCommand": "npx nx run-many -t build" }
   },
-  "targetDefaults": {
-    "test": {
-      "dependsOn": ["^build"]
-    }
-  },
-  "tui": {
-    "enabled": false
-  },
-  "nxCloudId": "6ab1341f56a4a0b5b1167f4f",
+  "targetDefaults": { "test": { "dependsOn": ["^build"] } },
+  "tui": { "enabled": false },
+  "nxCloudId": "6ab1531e38de81bd9f757065",
   "analytics": false
 }
